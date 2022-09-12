@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 // import function ko sử dụng {} , import param sử dụng {}
-import  App  from './App';
+import  App  from '~/App';
 // import  from './App';
 import reportWebVitals from './reportWebVitals';
 
@@ -11,9 +11,9 @@ import { StoreProvider }  from './store'
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <StoreProvider>
+    {/* <StoreProvider> */}
       <App />
-    </StoreProvider>
+    {/* </StoreProvider> */}
    
   </React.StrictMode>
 );

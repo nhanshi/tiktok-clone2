@@ -1,0 +1,22 @@
+// làm auto complete khi bấm ~ sẽ gợi ý dẫn tới thư mục nào đó
+{
+    "compilerOptions": {
+      "baseUrl": ".",
+      "paths": {
+        "~/*": ["src/*"]
+      }
+    }
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
