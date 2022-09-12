@@ -8,13 +8,12 @@ import React from 'react';
 // import { createRoot } from 'react-dom/client';
 
 // // import để sử dụng trong phần Forms
-import { useState } from "react";
+import { useState } from 'react';
 
 // // import để sử dụng trong phần Router , cần master page và child page
 // import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-
-// // import Todos là tên function để sử dụng trong React Memo hoặc React useCallback Hook, 
+// // import Todos là tên function để sử dụng trong React Memo hoặc React useCallback Hook,
 // // cần vào file này thay đổi sử dụng function Todos nào tùy theo trường hợp sử dụng
 // // import Todos from "./Todos";
 
@@ -25,36 +24,34 @@ import { useState } from "react";
 // // // import scss , scss là css do server tạo ra sử dụng trong React Css
 // // import './my-sass.scss';
 
-// import useEffect sử dụng trong React Hooks useEffect 
-import { useEffect } from "react";
+// import useEffect sử dụng trong React Hooks useEffect
+import { useEffect } from 'react';
 
 // import createContext để sử dụng trong React Hooks The Solution  >> Create Context
-import { createContext } from "react";
+import { createContext } from 'react';
 
 // import createContext để sử dụng trong React Hooks The Solution >> useContext
-import { useContext } from "react";
+import { useContext } from 'react';
 
 // import useRef để sử dụng trong React useRef Hooks
-import { useRef } from "react";
+import { useRef } from 'react';
 
 // import useReducer để sử dụng trong React useReducer Hooks
-import { useReducer } from "react";
+import { useReducer } from 'react';
 
 // import useCallback để sử dụng trong React useCallback Hooks
-import { useCallback } from "react";
+import { useCallback } from 'react';
 
 // import useMemo để sử dụng trong React useMemo Hooks
-import { useMemo } from "react";
+import { useMemo } from 'react';
 
 // import useMemo để sử dụng trong React useMemo Hooks
-import { memo } from "react";
+import { memo } from 'react';
 
 // import useFetch là tên function import từ File ngoài để sử dụng trong React Custom Hooks
 // import useFetch from "./useFetch";
 
-
-// useRef là hàm nhận 1 đối số initial value 
-
+// useRef là hàm nhận 1 đối số initial value
 
 // 1. memo () -> Higher Order Component(HOC)
 // 2. useCallback()
@@ -69,7 +66,7 @@ import { memo } from "react";
 
 // import Content from "./Content";
 
-// Context 
+// Context
 // Đơn giản hóa việc truyền dữ liệu từ component cha xuống các component con mà ko cần sử dụng tới props
 
 // Ví dụ Component A => Component B => Component C
@@ -83,38 +80,30 @@ import { memo } from "react";
 // useStore nằm trong file hooks của folder store, actions cũng vậy
 // import { useStore, actions } from './store'
 
-
-
-
-import Video from './Videos'
+import Video from './Videos';
 
 function App() {
+    const videoRef = useRef();
 
-  const videoRef = useRef()
+    const handlePlay = () => {
+        // videoRef.current.remove();
+        videoRef.current.play();
+    };
 
-  const handlePlay = () => {
-    // videoRef.current.remove();
+    const handlePause = () => {
+        videoRef.current.pause();
+    };
 
-    videoRef.current.play();
-  };
-
-  const handlePause = () => {
-    videoRef.current.pause();
-  };
-
-  return (
-   
-      <div className="App" style={{ padding: '0px 20px'}}>
-        {/* function component mặc định ko có ref nên nếu ta truyền ref kiểu props sẽ ko chạy được 
+    return (
+        <div className="App" style={{ padding: '0px 20px' }}>
+            {/* function component mặc định ko có ref nên nếu ta truyền ref kiểu props sẽ ko chạy được 
         vì vậy ta sử dụng 1 higher order component forwardRef để có thể lấy được ref truyền ở đây */}
-        {/* <Video ref={videoRef}/> */}
-        <Video ref={videoRef}/>    {/* *1 videoRef */}
-        <button onClick={handlePlay}>Play</button>
-        <button onClick={handlePause}>Pause</button>
-      </div>
- 
-   
-  )
+            {/* <Video ref={videoRef}/> */}
+            <Video ref={videoRef} /> {/* *1 videoRef */}
+            <button onClick={handlePlay}>Play</button>
+            <button onClick={handlePause}>Pause</button>
+        </div>
+    );
 }
 
 export default App;
