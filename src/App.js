@@ -1,4 +1,3 @@
-import './App.css';
 import React from 'react';
 // ReactDOM sử dụng trong các phiên bản cũ của nodejs
 // import ReactDOM from 'react-dom';
@@ -85,7 +84,7 @@ import { Fragment } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { publicRoutes } from '~/routes';
 
-import { DefaultLayout } from '~/components/Layout';
+import { DefaultLayout, HeaderOnly } from '~/components/Layout';
 
 function App() {
     return (
@@ -102,7 +101,7 @@ function App() {
                         // Có 1 trường hợp nữa là trang Upload có 1 layout riêng chỉ sử dụng lại Header vì vậy
                         // ta viết lại Layout component
                         // đầu tiên cho nó mặc định là DefaultLayout đã
-                        const Layout = DefaultLayout;
+                        let Layout = DefaultLayout;
                         // set điều kiện nếu route đó có đối số layout được khai báo
                         if (route.layout) {
                             Layout = route.layout;

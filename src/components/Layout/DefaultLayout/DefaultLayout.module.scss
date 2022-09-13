@@ -1,0 +1,24 @@
+// chỉ sự dụng cách viết code này được nếu khai báo
+// import classNames from 'classnames/bind'; và const cx = classNames.bind(styles);
+//
+.wrapper {
+    display: flex;
+    flex-direction: column; // để quay theo chiều dọc
+    align-items: center; // để canh giữa
+    // justify-content: center; // để canh container ra giữa
+}
+
+.container {
+    width: var(--default-layout-width);
+    display: flex;
+    // min-height: 1000px;
+    // background-color: #3333;
+}
+
+.content {
+    flex: 1; // chiểm khoảng không còn lại
+    //min-height: 1000px;
+
+    // min-height: 1000px;
+    // background-color: #3333;
+}
