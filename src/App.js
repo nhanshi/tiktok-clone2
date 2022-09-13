@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './App.css';
 import React from 'react';
 // ReactDOM sử dụng trong các phiên bản cũ của nodejs
@@ -82,27 +81,53 @@ import { memo } from 'react';
 
 import Video from './Videos';
 
+import { Fragment } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { publicRoutes } from '~/routes';
+
+import { DefaultLayout } from '~/components/Layout';
+
 function App() {
-    const videoRef = useRef();
-
-    const handlePlay = () => {
-        // videoRef.current.remove();
-        videoRef.current.play();
-    };
-
-    const handlePause = () => {
-        videoRef.current.pause();
-    };
-
     return (
-        <div className="App" style={{ padding: '0px 20px' }}>
-            {/* function component mặc định ko có ref nên nếu ta truyền ref kiểu props sẽ ko chạy được 
-        vì vậy ta sử dụng 1 higher order component forwardRef để có thể lấy được ref truyền ở đây */}
-            {/* <Video ref={videoRef}/> */}
-            <Video ref={videoRef} /> {/* *1 videoRef */}
-            <button onClick={handlePlay}>Play</button>
-            <button onClick={handlePause}>Pause</button>
-        </div>
+        <Router>
+            <div className="App" style={{ padding: '0px 20px' }}>
+                <Routes>
+                    {publicRoutes.map((route, index) => {
+                        // Component muốn đặt biến dùng JSX thì ta phải viết hoa chữ cái đầu
+                        // nếu ko set route.layout thì mắc định set DefaultLayout cho biến layout
+                        // nếu route.layout === null (trang upload )thì Layout component lúc này chỉ là thẻ Fragment
+                        // là 1 thẻ bọc bên ngoài để React khỏi lỗi chứ nó ko sinh ra thẻ html nào
+                        // const Layout = route.layout === null ? Fragment : DefaultLayout;
+
+                        // Có 1 trường hợp nữa là trang Upload có 1 layout riêng chỉ sử dụng lại Header vì vậy
+                        // ta viết lại Layout component
+                        // đầu tiên cho nó mặc định là DefaultLayout đã
+                        const Layout = DefaultLayout;
+                        // set điều kiện nếu route đó có đối số layout được khai báo
+                        if (route.layout) {
+                            Layout = route.layout;
+                        } // nếu đối số layout đó === null
+                        else if (route.layout === null) {
+                            Layout = Fragment;
+                        }
+
+                        const Page = route.component;
+                        return (
+                            <Route
+                                key={index}
+                                path={route.path}
+                                element={
+                                    <Layout>
+                                        {/* Page component lúc này trở thành children của Layout Component(DefaultLayout) */}
+                                        <Page />
+                                    </Layout>
+                                }
+                            />
+                        );
+                    })}
+                </Routes>
+            </div>
+        </Router>
     );
 }
 
